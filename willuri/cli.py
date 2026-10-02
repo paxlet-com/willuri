@@ -10,6 +10,8 @@ def main():
     parser = argparse.ArgumentParser(prog="willuri", description="Willuri: NL to URI Process Router")
     sub = parser.add_subparsers(dest="command", required=True)
 
+    sub.add_parser("domains", help="List all registered domains and specialized models")
+
     classify_cmd = sub.add_parser("classify", help="Classify instruction domain")
     classify_cmd.add_argument("instruction", help="Natural language instruction")
 
@@ -19,6 +21,20 @@ def main():
     route_cmd.add_argument("--input", default="{}", help="Input JSON data")
 
     args = parser.parse_args()
+
+    if args.command == "domains":
+        from .domains import DOMAIN_REGISTRY
+        res = {
+            name: {
+                "description": prof.description,
+                "preferred_models": prof.preferred_models,
+                "uri_prefixes": prof.uri_prefixes,
+                "keywords": prof.keywords,
+            }
+            for name, prof in DOMAIN_REGISTRY.items()
+        }
+        print(json.dumps(res, indent=2, ensure_ascii=False))
+        return 0
 
     if args.command == "classify":
         domain = classify_domain(args.instruction)
