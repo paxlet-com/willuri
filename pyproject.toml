@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "willuri"
+version = "0.1.0"
+description = "Natural language to specialized URI process router with domain-specific small LLMs"
+authors = [{ name = "Tom Sapletta", email = "tom@sapletta.com" }]
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "Proprietary" }
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+willuri = "willuri.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["willuri*"]
