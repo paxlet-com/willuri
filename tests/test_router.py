@@ -34,7 +34,7 @@ class UriRouterTest(unittest.TestCase):
         model_code = recommend_model("Napisz skrypt w pythonie liczący silnię")
         self.assertEqual(model_code, "qwen2.5-coder:3b")
         model_text = recommend_model("Znormalizuj tekst i usuń spacje")
-        self.assertEqual(model_text, "willman-nlp:qwen2.5-1.5b")
+        self.assertEqual(model_text, "willman-nlp:qwen2.5-3b")
 
     def test_router_adds_operation(self):
         router = UriRouter()

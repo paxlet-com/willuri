@@ -29,7 +29,7 @@ DOMAIN_REGISTRY: Dict[str, DomainProfile] = {
     "api_ops": DomainProfile(
         name="api_ops",
         description="Structured API calls, GitHub issue tracking, Dockuri containers, Thunderbird mail, and filesystem operations.",
-        preferred_models=["granite4.1:3b", "willman-nlp:qwen2.5-3b"],
+        preferred_models=["willman-nlp:qwen2.5-3b", "granite4.1:3b"],
         uri_prefixes=[
             "willman://operation/github.",
             "willman://operation/dockuri.",
@@ -42,7 +42,7 @@ DOMAIN_REGISTRY: Dict[str, DomainProfile] = {
     "planning": DomainProfile(
         name="planning",
         description="Sprint planning, ticket decomposition, subtask scheduling, and DAG dependencies.",
-        preferred_models=["qwen3.5:2b", "llama3.2:3b", "willman-nlp:qwen2.5-3b"],
+        preferred_models=["willman-nlp:qwen2.5-3b", "qwen3.5:2b", "llama3.2:3b"],
         uri_prefixes=[
             "willman://operation/koru.",
             "willman://operation/planfile.",
@@ -53,7 +53,7 @@ DOMAIN_REGISTRY: Dict[str, DomainProfile] = {
     "text": DomainProfile(
         name="text",
         description="Fast natural language text transformations, string normalization, whitespace, formatting.",
-        preferred_models=["willman-nlp:qwen2.5-1.5b", "willman-nlp:qwen2.5-3b"],
+        preferred_models=["willman-nlp:qwen2.5-3b", "willman-nlp:qwen2.5-1.5b"],
         uri_prefixes=[
             "willman://operation/text.",
         ],
