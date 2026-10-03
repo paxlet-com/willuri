@@ -28,20 +28,21 @@ DOMAIN_REGISTRY: Dict[str, DomainProfile] = {
     ),
     "api_ops": DomainProfile(
         name="api_ops",
-        description="Structured API calls, GitHub issue tracking, Dockuri containers, and filesystem operations.",
+        description="Structured API calls, GitHub issue tracking, Dockuri containers, Thunderbird mail, and filesystem operations.",
         preferred_models=["granite4.1:3b", "willman-nlp:qwen2.5-3b"],
         uri_prefixes=[
             "willman://operation/github.",
             "willman://operation/dockuri.",
             "willman://operation/files.",
+            "willman://operation/thunderbird",
             "dockuri://",
         ],
-        keywords=["github", "issue", "zgłoszenie", "plik", "dockuri", "kontener", "katalog", "read", "view"],
+        keywords=["github", "issue", "zgłoszenie", "plik", "dockuri", "kontener", "katalog", "read", "view", "email", "mail", "thunderbird", "poczta", "wiadomości"],
     ),
     "planning": DomainProfile(
         name="planning",
         description="Sprint planning, ticket decomposition, subtask scheduling, and DAG dependencies.",
-        preferred_models=["llama3.2:3b", "willman-nlp:qwen2.5-3b"],
+        preferred_models=["qwen3.5:2b", "llama3.2:3b", "willman-nlp:qwen2.5-3b"],
         uri_prefixes=[
             "willman://operation/koru.",
             "willman://operation/planfile.",
@@ -83,3 +84,10 @@ def classify_domain(instruction: str, catalog_uris: Optional[List[str]] = None) 
             best_domain = domain
 
     return best_domain
+
+
+def recommend_model(instruction: str, catalog_uris: Optional[List[str]] = None) -> str:
+    """Recommend the best specialized model for an instruction."""
+    profile = classify_domain(instruction, catalog_uris)
+    return profile.preferred_models[0]
+
